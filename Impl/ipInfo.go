@@ -1,7 +1,6 @@
 package Impl
 
 import (
-	"IP_Geolocation_Offline_Resolution/Model"
 	_ "embed"
 	"github.com/lionsoul2014/ip2region/binding/golang/xdb"
 	"net"
@@ -13,9 +12,6 @@ import (
 
 //go:embed resources/ip/ip2region.xdb
 var ip2regionxdb []byte
-
-// IPInfoResult 是解析 IP 的返回结构体
-type IPInfoResult = Model.IPInfoResult
 
 func GetIpInfo(ip string) IPInfoResult {
 	ip = strings.TrimSpace(ip)
