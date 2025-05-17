@@ -25,6 +25,22 @@
           <n-input v-model:value="ipInfo" readonly />
         </div>
       </n-space>
+
+      <n-space style="background-color: snow;margin-top: 10vw">
+        <div style="margin-right: 5vw">
+          <n-tag style="margin-bottom: 5px" type="info">后台API监听[默认地址为http://localhost:45555/info?ip=1.2.3.4]：</n-tag>
+        </div>
+        <div>
+          <n-switch v-model:value="apiEnabled" @update:value="onToggleApi" :loading="switchLoading">
+            <template #checked>
+              API接口运行中...
+            </template>
+            <template #unchecked>
+              API接口已关闭.
+            </template>
+          </n-switch>
+        </div>
+      </n-space>
     </n-card>
   </div>
 
@@ -37,6 +53,9 @@ import { NInput, NButton, NCard } from 'naive-ui'
 const ip = ref(null);
 const ipInfo = ref("请输入IP信息");
 const loading = ref(false)
+const switchLoading = ref(false)
+const apiEnabled = ref(false)
+
 
 const getIPInfo = async () =>{
   loading.value = true
@@ -48,6 +67,30 @@ const getIPInfo = async () =>{
     loading.value = false
   }
 }
+
+const onToggleApi = async (value) =>{
+  if (value){
+    openApi()
+    switchLoading.value = true;
+    await sleep(500)
+    switchLoading.value = false;
+  }else {
+    closeApi()
+    switchLoading.value = true;
+    await sleep(500)
+    switchLoading.value = false;
+  }
+}
+
+function openApi(){
+  window.go.main.App.StartAPIService();
+}
+
+function closeApi(){
+  window.go.main.App.StopAPIService();
+}
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 </script>
 
 <style scoped>

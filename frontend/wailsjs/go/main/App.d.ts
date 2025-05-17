@@ -4,3 +4,7 @@
 export function GetIpInfoService(arg1:string):Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;
+
+export function StartAPIService():Promise<void>;
+
+export function StopAPIService():Promise<void>;

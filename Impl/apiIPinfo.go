@@ -47,7 +47,7 @@ func StartLocalAPI() {
 	}
 
 	go func() {
-		log.Println("本地 API 接口已启动，监听端口 45555")11
+		log.Println("本地 API 接口已启动，监听端口 45555")
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Println("API 启动失败:", err)
 		}

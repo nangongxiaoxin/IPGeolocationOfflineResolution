@@ -9,3 +9,11 @@ export function GetIpInfoService(arg1) {
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
+
+export function StartAPIService() {
+  return window['go']['main']['App']['StartAPIService']();
+}
+
+export function StopAPIService() {
+  return window['go']['main']['App']['StopAPIService']();
+}
